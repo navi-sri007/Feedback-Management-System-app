@@ -1,0 +1,232 @@
+[
+  {
+    "step": "Read and analyze backend dependencies from pom.xml",
+    "sub_steps": [
+      "Read /home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280-584959df9b94/springapp/pom.xml to confirm available dependencies: Spring Boot, JPA, MySQL, validation.",
+      "Reference application.properties for MySQL config."
+    ],
+    "files_to_add": [],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280-584959df9b94/springapp/pom.xml",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280-584959df9b94/springapp/src/main/resources/application.properties"
+    ],
+    "description": "This step ensures that all required backend dependencies are present and properly configured for Spring Boot, JPA, MySQL, and validation so that entity, repository, service, and controller creation is possible."
+  },
+  {
+    "step": "Implement Feedback Entity, Repository, and Status Enum",
+    "sub_steps": [
+      "Create Feedback entity class with required fields and validation annotations.",
+      "Create FeedbackStatus enum (PENDING, APPROVED, REJECTED).",
+      "Set up JPA annotations and validation constraints.",
+      "Implement JpaRepository-based FeedbackRepository."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280-584959df9b94/springapp/src/main/java/com/examly/springapp/model/Feedback.java",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/springapp/src/main/java/com/examly/springapp/model/FeedbackStatus.java",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/springapp/src/main/java/com/examly/springapp/repository/FeedbackRepository.java"
+    ],
+    "files_to_edit": [],
+    "description": "Implements the core Feedback model with validation, feedback status enum, and database interaction via repository. This satisfies all requirements for feedback data structure and integrity."
+  },
+  {
+    "step": "Implement Feedback Service Layer with Business Logic",
+    "sub_steps": [
+      "Create FeedbackService interface and FeedbackServiceImpl class.",
+      "Methods: createFeedback, getFeedbackByUserId, getAllFeedback, updateFeedbackStatus, deleteFeedback.",
+      "Implement validation rules in createFeedback. Set status to PENDING and createdAt timestamp.",
+      "Implement business logic and error handling as per requirements."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/springapp/src/main/java/com/examly/springapp/service/FeedbackService.java",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/springapp/src/main/java/com/examly/springapp/service/FeedbackServiceImpl.java"
+    ],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/springapp/src/main/java/com/examly/springapp/model/Feedback.java",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/springapp/src/main/java/com/examly/springapp/repository/FeedbackRepository.java"
+    ],
+    "description": "Creates a clean separation between business logic and persistence, ensuring validation, creation, listing, update status, and delete operations are robust and testable."
+  },
+  {
+    "step": "Implement REST Controllers for User and Admin Endpoints",
+    "sub_steps": [
+      "Create FeedbackController for user endpoints: submit feedback, get user's feedback.",
+      "Create AdminFeedbackController for admin endpoints: get all feedback, update feedback status, delete feedback.",
+      "Handle validation, status codes, error messages, and map service methods.",
+      "Configure CORS to allow requests from frontend."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/springapp/src/main/java/com/examly/springapp/controller/FeedbackController.java",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/springapp/src/main/java/com/examly/springapp/controller/AdminFeedbackController.java"
+    ],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/springapp/src/main/java/com/examly/springapp/FeedbackManagementSystemApplication.java"
+    ],
+    "description": "Exposes all required REST API endpoints for users and admins per requirements with correct routes, status codes, validation responses, and CORS config."
+  },
+  {
+    "step": "Implement Backend Test Cases (JUnit)",
+    "sub_steps": [
+      "Create FeedbackServiceTest.java (or similar) under test/java/com/examly/springapp/service/.",
+      "Implement and verify each required test case from the Test Cases JSON:",
+      "  - testCreateFeedback: Validate creation logic, status, timestamp",
+      "  - testGetFeedbackByUserId: Ensure only correct user feedback is fetched",
+      "  - testUpdateFeedbackStatus: Status update for valid/invalid/absent IDs",
+      "  - testDeleteFeedback: Deletion and error case",
+      "  - testFeedbackValidation: All validation edge cases (empty fields, invalid ranges, etc.)",
+      "Setup proper mocks for repository/service where needed.",
+      "Ensure comprehensive assertions per test description."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/springapp/src/test/java/com/examly/springapp/service/FeedbackServiceTest.java"
+    ],
+    "files_to_edit": [],
+    "description": "Implements all required backend logic test cases with accurate assertions and mocks, matching the provided descriptions. Ensures the backend is robust to both valid and invalid inputs."
+  },
+  {
+    "step": "Compile and Run Backend Tests (Spring Boot, JUnit)",
+    "sub_steps": [
+      "Compile: mvn clean compile -q -Dspring.main.banner-mode=off",
+      "Run tests: mvn test -q -Dspring.main.banner-mode=off"
+    ],
+    "files_to_add": [],
+    "files_to_edit": [],
+    "description": "Ensures all backend code compiles and passes required service-level tests before moving to frontend implementation."
+  },
+  {
+    "step": "Read and analyze frontend dependencies from package.json",
+    "sub_steps": [
+      "Review /home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/package.json for available libraries: React, hooks, React Router, Axios/fetch.",
+      "Understand project initialization."
+    ],
+    "files_to_add": [],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/package.json"
+    ],
+    "description": "Verifies availability of required React libraries, React Router, and a standard HTTP client to enable frontend development."
+  },
+  {
+    "step": "Implement reusable API utility for backend communication",
+    "sub_steps": [
+      "Create api.js in src/utils/ for backend API wrap using Axios or fetch.",
+      "Define methods for each needed API call (submit, getUserFeedback, getAll, updateStatus, delete).",
+      "Handle API base URL, error status handling, and loading state.",
+      "Define constants.js for API endpoints and status values."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/utils/api.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/utils/constants.js"
+    ],
+    "files_to_edit": [],
+    "description": "Centralizes all backend API calls, error handling, and endpoint constants, promoting DRY code and easier integration in components."
+  },
+  {
+    "step": "Implement FeedbackForm Component and its Test File",
+    "sub_steps": [
+      "Create FeedbackForm.js for feedback submission UI (fields: userId, productId, rating, comment, submit).",
+      "Add controlled components, validation logic per requirements, error displays, success state, loading indicator.",
+      "Add modern styling using provided design guidelines and CSS variables.",
+      "Create FeedbackForm.test.js implementing both testFeedbackFormRendering and testFeedbackFormValidation cases with proper assertions and mocks.",
+      "Reference API utility and constants for backend calls.",
+      "Ensure data-testid attributes and accessibility best practices."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/components/FeedbackForm.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/components/FeedbackForm.test.js"
+    ],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/utils/api.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/utils/constants.js"
+    ],
+    "description": "Implements user feedback submission UI and logic; ensures both required rendering and validation test cases are fully implemented with proper mocks."
+  },
+  {
+    "step": "Implement UserFeedbackList Component and its Test File",
+    "sub_steps": [
+      "Create UserFeedbackList.js component: input for userId, fetch button, list feedback response.",
+      "Display each feedback: productId, rating, comment, status, createdAt (MM/DD/YYYY).",
+      "Add empty state, loading and error states.",
+      "Implement styling per guidelines using CSS variables/utilities.",
+      "Create UserFeedbackList.test.js covering testUserFeedbackListRendering: rendering, API mock, empty state, correct info.",
+      "Add data-testid as needed for reliable test selectors.",
+      "Utilize API utility and formatting helpers."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/components/UserFeedbackList.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/components/UserFeedbackList.test.js"
+    ],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/utils/api.js"
+    ],
+    "description": "Provides UI for users to list and view their feedback. Ensures all specified behaviors are tested, including correct API integration and edge cases."
+  },
+  {
+    "step": "Implement AdminFeedbackList Component and its Test File",
+    "sub_steps": [
+      "Create AdminFeedbackList.js: displays all feedback, admin actions (Approve/Reject/Delete) with dialog confirmation.",
+      "Action buttons enabled/disabled as per feedback status, update UI on status change/delete.",
+      "Handle loading, error and empty states.",
+      "Add robust styling as per guidelines.",
+      "Create AdminFeedbackList.test.js covering testAdminFeedbackListActions: rendering, action button logic, confirmation, correct API calls, and button states.",
+      "Utilize API utility and constants.",
+      "Add data-testid for targeted queries in tests."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/components/AdminFeedbackList.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/components/AdminFeedbackList.test.js"
+    ],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/utils/api.js"
+    ],
+    "description": "Builds the required admin UI to manage all feedback, including status and deletion controls. Fully tests all required admin interaction cases and state handling."
+  },
+  {
+    "step": "Update Routing, Main App Integration, and Styling",
+    "sub_steps": [
+      "Setup React Router in App.js for the four routes: /, /submit, /user-feedback, /admin.",
+      "Implement a home page with navigation links.",
+      "Import and display FeedbackForm, UserFeedbackList, and AdminFeedbackList at proper routes.",
+      "Apply consistent container and layout styling per requirements, set up global CSS variables and utility classes in App.css.",
+      "Ensure each component is wrapped, centered, and responsive.",
+      "Add CSS for error, loading, button, and form styles using design system."
+    ],
+    "files_to_add": [],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/App.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/App.css"
+    ],
+    "description": "Connects all major components via routing, applies consistent app-wide styles and ensures the app entry point provides discoverable navigation and a professional look/feel."
+  },
+  {
+    "step": "Implement and Validate Frontend Test Cases (React/Jest)",
+    "sub_steps": [
+      "Verify and finalize FeedbackForm.test.js for:",
+      "  - testFeedbackFormRendering (fields, submit button, error/success states, form empty state)",
+      "  - testFeedbackFormValidation (all field edge cases, disabled submit)",
+      "Verify and finalize UserFeedbackList.test.js for:",
+      "  - testUserFeedbackListRendering (render list, API mock, empty case, info display)",
+      "Verify and finalize AdminFeedbackList.test.js for:",
+      "  - testAdminFeedbackListActions (render, approve/reject/delete workflows, confirmation dialogs, correct state)",
+      "Ensure all test mocks and assertions use data-testid where necessary and match the expected behaviors verbatim.",
+      "Do NOT implement any other tests \u2013 only those required by the Test Cases JSON."
+    ],
+    "files_to_add": [],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/components/FeedbackForm.test.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/components/UserFeedbackList.test.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/1c34684a-ddf4-4711-a280_584959df9b94/reactapp/src/components/AdminFeedbackList.test.js"
+    ],
+    "description": "Ensures every test case provided is implemented verbatim in the correct test files with robust and precise mocks, selectors, and assertion patterns for reliable CI execution."
+  },
+  {
+    "step": "Install, Build, Lint, and Run Frontend Tests Sequentially",
+    "sub_steps": [
+      "Run npm install to install dependencies.",
+      "Run npm run build for frontend build verification.",
+      "Run npx eslint src/ --fix to lint and fix style errors.",
+      "Run npm run test:ci to execute all Jest test cases non-interactively."
+    ],
+    "files_to_add": [],
+    "files_to_edit": [],
+    "description": "Completes the solution validation cycle for the frontend, ensuring all tests, build, and linting pass in the required order for production-readiness and robust continuous integration."
+  }
+]

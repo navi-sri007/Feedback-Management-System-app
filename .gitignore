@@ -1,0 +1,13 @@
+
+# React dependencies and generated files
+reactapp/node_modules/
+reactapp/build/
+reactapp/.env
+
+# Spring Boot generated files
+springapp/target/
+
+# Environment and IDE files
+.env
+.vscode/
+.idea/
